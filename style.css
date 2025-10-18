@@ -1,0 +1,166 @@
+/* -- Variabel dan Reset Dasar -- */
+:root {
+    --primary-color: #ff5722; /* Oranye Terang */
+    --secondary-color: #2196f3; /* Biru */
+    --background-color: #f0f2f5;
+    --text-dark: #333;
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-dark);
+    perspective: 1000px; /* Penting untuk efek 3D */
+}
+
+/* -- Header -- */
+header {
+    background: linear-gradient(135deg, var(--primary-color), #ff9800);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: var(--card-shadow);
+}
+header h1 {
+    margin: 0 0 5px 0;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+}
+header p {
+    font-size: 1.1em;
+}
+
+/* -- Grid Mading (Container) -- */
+.mading-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Layout Responsif */
+    gap: 30px;
+    padding: 50px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* -- Kartu Mading (Mading Card) -- */
+.mading-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.27); /* Animasi Elastis */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    height: 350px; /* Ketinggian seragam */
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.mading-card h3 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.mading-card p {
+    font-size: 0.95em;
+    flex-grow: 1; /* Konten mengisi ruang yang tersedia */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Batasi jumlah baris */
+    -webkit-box-orient: vertical;
+}
+
+.mading-card .meta {
+    margin-top: 15px;
+    font-size: 0.85em;
+    color: #888;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* -- Marker Kategori (Warna Unik) -- */
+.mading-card::before {
+    content: attr(data-category); /* Ambil konten dari atribut data-category */
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px 0 15px 0;
+    font-weight: 600;
+    font-size: 0.8em;
+}
+
+.mading-card.puisi::before { background-color: #e91e63; } /* Pink */
+.mading-card.berita::before { background-color: #2196f3; } /* Biru */
+.mading-card.visual::before { background-color: #ffc107; color: #333; } /* Kuning */
+
+/* ======================================= */
+/* ====== ANIMASI HOVER UNIK (3D) ====== */
+/* ======================================= */
+
+.mading-card:hover {
+    transform: translateY(-15px) rotateX(5deg) scale(1.03); /* Naik, sedikit miring 3D, dan membesar */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Animasi tambahan pada elemen di dalam kartu saat hover */
+.mading-card:hover .meta {
+    color: var(--primary-color); /* Warna Meta berubah */
+    font-weight: 600;
+}
+
+/* Efek background gradien saat hover */
+.mading-card:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.05); /* Gradien putih transparan */
+    z-index: 1;
+}
+
+/* -- Submission Area (Tombol CTA) -- */
+.submission-area {
+    text-align: center;
+    padding: 30px 5%;
+    background-color: white;
+    border-top: 1px solid #ddd;
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+}
+
+/* Animasi Tombol (Shadow Pulse) */
+.cta-button:hover {
+    background-color: #1e88e5;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.6);
+}
+
+/* -- Footer -- */
+footer {
+    background-color: var(--text-dark);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
